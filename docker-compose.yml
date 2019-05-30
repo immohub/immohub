@@ -25,12 +25,11 @@ services:
       - db
   db:
     # We use the predefined Postgres image
-    image: postgres:11.3
+    image: postgres:alpine
     environment:
       # Set user/password for Postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: immodb
       # Set a path where Postgres should store the data
       PGDATA: /var/lib/postgresql/data/pgdata
     restart: unless-stopped
