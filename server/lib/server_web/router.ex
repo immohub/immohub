@@ -7,5 +7,6 @@ defmodule ServerWeb.Router do
 
   scope "/api", ServerWeb do
     pipe_through :api
+    resources "/agencies", AgencyController, except: [:new, :edit]
   end
 end

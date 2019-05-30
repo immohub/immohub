@@ -15,6 +15,9 @@ WORKDIR /app
 RUN mix local.hex --force
 RUN mix local.rebar --force
 
+# Fetch the dependencies
+RUN mix deps.get
+
 # Compile the project
 RUN mix do compile
 

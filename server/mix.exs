@@ -20,7 +20,7 @@ defmodule Server.MixProject do
   def application do
     [
       mod: {Server.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:ueberauth, :ueberauth_auth0, :logger, :runtime_tools]
     ]
   end
 
@@ -40,7 +40,9 @@ defmodule Server.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:ueberauth, "~> 0.6.1"},
+      {:ueberauth_auth0, "~> 0.3.0"}
     ]
   end
 
