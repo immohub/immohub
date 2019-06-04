@@ -31,6 +31,7 @@ import_config "#{Mix.env()}.exs"
 
 # Configures Ueberauth
 config :ueberauth, Ueberauth,
+  json_library: Jason,
   providers: [
     auth0: { Ueberauth.Strategy.Auth0, [] },
   ]
@@ -40,3 +41,8 @@ config :ueberauth, Ueberauth.Strategy.Auth0.OAuth,
   domain: System.get_env("AUTH0_DOMAIN"),
   client_id: System.get_env("AUTH0_CLIENT_ID"),
   client_secret: System.get_env("AUTH0_CLIENT_SECRET")
+
+config :oauth2,
+  serializers: %{
+    "application/json" => Jason
+  }
