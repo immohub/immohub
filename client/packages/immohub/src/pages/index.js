@@ -1,7 +1,7 @@
 import React from "react"
 
 import Layout from "../components/layout"
-import Hello from 'shared'
+import Hello from '@immohub/shared'
 
 const IndexPage = () => (
   <Layout>

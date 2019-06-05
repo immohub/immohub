@@ -1,24 +1,18 @@
 {
-  "name": "client",
+  "private": true,
+  "name": "immohub",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {
-    "lerna": "^3.14.1",
-    "prettier": "^1.17.1"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "start": "wsrun start"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "agency_backoffice": "file:packages/admin_agency",
-    "gatsby-starter-default": "file:packages/immohub",
-    "shared": "file:packages/shared",
-    "undefined": "file:packages/web_agency"
+  "devDependencies": {
+    "wsrun": "^3.6.6"
   }
 }

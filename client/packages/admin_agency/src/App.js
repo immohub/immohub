@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Hello from 'shared'
+import Hello from '@immohub/shared'
 
 function App() {
   return (

@@ -1,12 +1,12 @@
 {
-  "name": "agency_backoffice",
+  "name": "@immohub/admin_agency",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
-    "shared": "file:../shared"
+    "@immohub/shared": "1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
