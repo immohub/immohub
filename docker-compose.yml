@@ -32,6 +32,16 @@ services:
     restart: unless-stopped
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  frontend:
+    build: ./client
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+      - "3002:3002"
+    depends_on:
+        - phoenix
+
 # Define the volumes
 volumes:
   pgdata:
