@@ -4,8 +4,7 @@ defmodule Server.Repo.Migrations.CreateUsers do
   def change do
     create table(:users) do
       add :email, :string
-      add :first_name, :string
-      add :last_name, :string
+      add :password_hash, :string
 
       timestamps()
     end
