@@ -1,12 +1,14 @@
 import React from "react"
+import { Button } from '@immohub/shared'
 
 import Layout from "../components/layout"
-import Hello from '@immohub/shared'
+
+console.log(Button)
 
 const IndexPage = () => (
   <Layout>
     <h1>Hi people</h1>
-    <Hello />
+    <Button>click me</Button>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
   </Layout>
