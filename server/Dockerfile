@@ -3,7 +3,7 @@ FROM elixir:alpine
 
 # Install postgresql-client
 RUN apk update && \
-    apk add postgresql-client
+    apk add postgresql-client make gcc libc-dev
 
 # Create app directory and copy the Elixir projects into it
 RUN mkdir /app

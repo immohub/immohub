@@ -4,7 +4,7 @@ defmodule Server.Accounts.User do
   import Ecto.Changeset
   import Argon2, only: [hash_pwd_salt: 1]
   # Alias
-  alias Server.Accounts.User
+  # alias Server.Accounts.User
 
   schema "users" do
     field :email, :string
@@ -25,6 +25,7 @@ defmodule Server.Accounts.User do
     |> validate_length(:password, min: 8) # Check that password length is >= 8 
     |> validate_confirmation(:password) # Check that password === password_confirmation
     |> unique_constraint(:email) # Check that email is unique
+    |> put_password_hash()
   end
 
   defp put_password_hash(%Ecto.Changeset{valid?: true, changes: %{password: pass}} = changeset) do
