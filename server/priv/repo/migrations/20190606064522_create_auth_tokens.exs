@@ -5,7 +5,7 @@ defmodule Server.Repo.Migrations.CreateAuthTokens do
     create table(:auth_tokens) do
       add :token, :string, null: false
       add :revoked_at, :utc_datetime
-      add :user_id, references(:users, on_delete: :nothing), null: false
+      add :user_id, references(:users, on_delete: :delete_all), null: false
 
       timestamps()
     end

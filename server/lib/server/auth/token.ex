@@ -1,11 +1,17 @@
 defmodule Server.Auth.Token do
   use Ecto.Schema
+  # Imports
   import Ecto.Changeset
+  # Aliases
+  alias Server.Accounts.User
 
   schema "auth_tokens" do
     field :revoked_at, :utc_datetime
     field :token, :string
-    field :user_id, :id
+    # Virtual fields:
+    field :revoked, :boolean, virtual: true
+    # Associations:
+    belongs_to :user, User
 
     timestamps()
   end

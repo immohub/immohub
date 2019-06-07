@@ -5,7 +5,20 @@ defmodule ServerWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authenticate do
+    plug ServerWeb.Plugs.Authenticate
+  end
+
   scope "/api", ServerWeb do
     pipe_through :api
+
+    resources "/users", UserController
+  end
+
+  scope "/auth", ServerWeb do
+    pipe_through :api
+
+    post "/sign_in", AuthController, :create
+    delete "/sign_out", AuthController, :delete
   end
 end
