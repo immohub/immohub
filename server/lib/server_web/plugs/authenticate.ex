@@ -1,5 +1,8 @@
 defmodule ServerWeb.Plugs.Authenticate do
+  # Import
   import Plug.Conn
+  # Aliases
+  alias Server.Repo
 
   def init(default), do: default
 
