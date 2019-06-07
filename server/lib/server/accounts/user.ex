@@ -6,6 +6,7 @@ defmodule Server.Accounts.User do
   # Alias
   # alias Server.Accounts.User
   alias Server.Repo
+  alias Server.Accounts.User
   alias Server.Services.Authenticator
 
   schema "users" do
@@ -16,6 +17,7 @@ defmodule Server.Accounts.User do
     field :password_confirmation, :string, virtual: true
     # Associations:
     has_many :auth_tokens, Server.Auth.Token
+    has_many :agencies, Server.Agencies.Agency
 
     timestamps()
   end
@@ -35,10 +37,14 @@ defmodule Server.Accounts.User do
   def sign_in(email, password) do
     case check_pass(Repo.get_by(User, email: email), password) do
       {:ok, user} ->
-        token = Authenticator.generate_token(user)
-        Repo.insert(Ecto.build_assoc(user, :auth_tokens, %{token: token}))
+        sign_in(user)
       error -> error
     end
+  end
+
+  def sign_in(%User{} = user) do
+    token = Authenticator.generate_token(user)
+    Repo.insert(Ecto.build_assoc(user, :auth_tokens, %{token: token}))
   end
 
   def sign_out(conn) do

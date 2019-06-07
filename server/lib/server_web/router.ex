@@ -13,6 +13,7 @@ defmodule ServerWeb.Router do
     pipe_through :api
 
     resources "/users", UserController
+    resources "/agencies", AgencyController, only: [:create]
   end
 
   scope "/auth", ServerWeb do
