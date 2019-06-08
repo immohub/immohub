@@ -3,8 +3,6 @@ import { Button } from '@immohub/shared'
 
 import Layout from "../components/layout"
 
-console.log(Button)
-
 const IndexPage = () => (
   <Layout>
     <h1>Hi people</h1>
