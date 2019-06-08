@@ -48,6 +48,15 @@ services:
     volumes:
       - ./client/packages:/app/packages
 
+  proxy:
+    image: traefik:alpine
+    command: --api --logLevel="DEBUG"
+    ports:
+      - "5000:5000"
+      - "8080:8080"
+    volumes:
+      - ./proxy/traefik.toml:/etc/traefik/traefik.toml
+
 # Define the volumes
 volumes:
   pgdata:
