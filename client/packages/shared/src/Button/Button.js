@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export default function Button({ onClick, children }) {
+export default function Button(props) {
   return (
-    <button onClick={onClick}>
-      {children}
-    </button>
+    <button {...props}/>
   )
 }

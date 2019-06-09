@@ -9,7 +9,11 @@ services:
     env_file:
       - .env
     volumes:
-      - ./server:/app
+      - ./server/config:/app/config
+      - ./server/entrypoints:/app/entrypoints
+      - ./server/lib:/app/lib
+      - ./server/priv:/app/priv
+      - ./server/test:/app/test
     # The build parameters for this container.
     build:
       # Here we define that it should build from the current directory
@@ -41,6 +45,17 @@ services:
       - "3002:3002"
     depends_on:
         - phoenix
+    volumes:
+      - ./client/packages:/app/packages
+
+  proxy:
+    image: traefik:alpine
+    command: --api --logLevel="DEBUG"
+    ports:
+      - "5000:5000"
+      - "8080:8080"
+    volumes:
+      - ./proxy/traefik.toml:/etc/traefik/traefik.toml
 
 # Define the volumes
 volumes:
