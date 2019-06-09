@@ -1,11 +1,10 @@
-defmodule Server.Accounts do
+defmodule Server.Accounts.Users do
   @moduledoc """
-  The Accounts context.
+  The Users context.
   """
 
-  import Ecto.Query, warn: false
+  # Aliases
   alias Server.Repo
-
   alias Server.Accounts.User
 
   @doc """
@@ -100,5 +99,22 @@ defmodule Server.Accounts do
   """
   def change_user(%User{} = user) do
     User.changeset(user, %{})
+  end
+
+  @doc """
+  Gets a single user.
+
+  Raises `Ecto.NoResultsError` if the User does not exist.
+
+  ## Examples
+
+      iex> get_user!(123)
+      %User{}
+
+      iex> get_user!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_token_user(_) do
   end
 end

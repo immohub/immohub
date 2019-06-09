@@ -1,27 +1,30 @@
 defmodule ServerWeb.AuthController do
   use ServerWeb, :controller
-  alias Server.Accounts.User
+  # Aliases
+  alias Server.Accounts.Auth
+  alias ServerWeb.Helpers.HeadersHelper
 
-  def create(conn, %{"email" => email, "password" => password}) do
-    case User.sign_in(email, password) do
-      {:ok, auth_token} ->
+  def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
+    case Auth.sign_in(email, password) do
+      {:ok, params} ->
         conn
-          |> put_status(:ok)
-          |> render("show.json", auth_token)
+        |> put_status(:ok)
+        |> render("show.json", params)
       {:error, reason} ->
         conn
-          |> send_resp(401, reason)
+        |> send_resp(401, reason)
     end
   end
 
   def delete(conn, _) do
-    case User.sign_out(conn) do
-      {:ok, _} ->
-        conn
-          |> send_resp(204, "")
+    with  {:ok, auth_token} <- HeadersHelper.get_auth_token(conn),
+          {:ok, _} <- Auth.sign_out(auth_token) do
+      conn
+      |> send_resp(204, "")
+    else
       {:error, reason} ->
         conn
-          |> send_resp(400, reason)
+        |> send_resp(400, reason)
     end
   end
 end

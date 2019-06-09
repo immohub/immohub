@@ -1,13 +1,9 @@
 defmodule Server.Accounts.User do
   use Ecto.Schema
-  # Import
+  # Imports
   import Ecto.Changeset
-  import Argon2, only: [hash_pwd_salt: 1, check_pass: 2]
   # Alias
-  # alias Server.Accounts.User
-  alias Server.Repo
-  alias Server.Accounts.User
-  alias Server.Services.Authenticator
+  alias Server.Accounts.Encryption
 
   schema "users" do
     field :email, :string
@@ -16,7 +12,7 @@ defmodule Server.Accounts.User do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
     # Associations:
-    has_many :auth_tokens, Server.Auth.Token
+    has_many :auth_tokens, Server.Accounts.Token
     has_many :agencies, Server.Agencies.Agency
 
     timestamps()
@@ -34,32 +30,9 @@ defmodule Server.Accounts.User do
     |> put_password_hash()
   end
 
-  def sign_in(email, password) do
-    case check_pass(Repo.get_by(User, email: email), password) do
-      {:ok, user} ->
-        sign_in(user)
-      error -> error
-    end
-  end
-
-  def sign_in(%User{} = user) do
-    token = Authenticator.generate_token(user)
-    Repo.insert(Ecto.build_assoc(user, :auth_tokens, %{token: token}))
-  end
-
-  def sign_out(conn) do
-    case Authenticator.get_auth_token(conn) do
-      {:ok, token} ->
-        case Repo.get_by(Server.Auth.Token, %{token: token}) do
-          nil -> {:error, :not_found}
-          auth_token -> Repo.delete(auth_token)
-        end
-      error -> error
-    end
-  end
-
-  defp put_password_hash(%Ecto.Changeset{valid?: true, changes: %{password: pass}} = changeset) do
-    put_change(changeset, :password_hash, hash_pwd_salt(pass))
+  defp put_password_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    changeset
+      |> change(Encryption.password_hashing(password))
   end
 
   defp put_password_hash(changeset), do: changeset

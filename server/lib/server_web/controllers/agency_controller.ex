@@ -2,23 +2,22 @@ defmodule ServerWeb.AgencyController do
   use ServerWeb, :controller
   require Logger
 
-  alias Server.Agencies
-  alias Server.Accounts.User
+  # alias Server.Agencies.Agencies
 
   action_fallback ServerWeb.FallbackController
 
-  def create(conn, %{"user" => user_params, "agency" => agency_params}) do
-    case Agencies.create_agency_with_user(user_params, agency_params) do
-      {:ok, %{agency: agency, auth_token: auth_token}} ->
-        conn
-          |> put_status(:created)
-          |> render("show.json", agency: agency, auth_token: auth_token)
-      error ->
-        Logger.error(error.inspect)
-        conn
-          |> put_status(:not_found)
-    end
-  end
+  # def create(conn, %{"user" => user_params, "agency" => agency_params}) do
+  #   case Agencies.create_agency_with_user(user_params, agency_params) do
+  #     {:ok, %{agency: agency, auth_token: auth_token}} ->
+  #       conn
+  #         |> put_status(:created)
+  #         |> render("show.json", agency: agency, auth_token: auth_token)
+  #     error ->
+  #       Logger.error(error.inspect)
+  #       conn
+  #         |> put_status(:not_found)
+  #   end
+  # end
 
   # def index(conn, _params) do
   #   agencies = Agencies.list_agencies()

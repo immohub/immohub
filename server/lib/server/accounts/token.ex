@@ -1,4 +1,4 @@
-defmodule Server.Auth.Token do
+defmodule Server.Accounts.Token do
   use Ecto.Schema
   # Imports
   import Ecto.Changeset
