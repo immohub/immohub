@@ -3,7 +3,7 @@ defmodule Server.Services.Authenticator do
   @secret "CH8mMkTxvFvAE_k7AgAE_eBVA0OR1vNGkPbTiZ5m"
 
   def generate_token(id) do
-    Phoenix.Token.sign(@secret, @seed, id, max_age: 86400)
+    Phoenix.Token.sign(@secret, @seed, id)
   end
 
   def verify_token(token) do

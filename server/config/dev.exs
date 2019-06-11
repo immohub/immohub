@@ -7,7 +7,7 @@ config :server, Server.Repo,
   database: "database",
   hostname: "hostname",
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  pool_size: 40
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -55,3 +55,6 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :server, Server.Mailer,
+      adapter: Bamboo.LocalAdapter
