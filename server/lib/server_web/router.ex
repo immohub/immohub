@@ -9,14 +9,16 @@ defmodule ServerWeb.Router do
     plug ServerWeb.Plugs.Authenticate
   end
 
-  scope "/api", ServerWeb do
+  scope "/api", ServerWeb, as: :api do
     pipe_through :api
 
-    resources "/users", UserController
+    scope "/v1", V1, as: :v1 do
+      resources "/users", UserController
+    end
     # resources "/agencies", AgencyController, only: [:create]
   end
 
-  scope "/auth", ServerWeb do
+  scope "/auth", ServerWeb, as: :auth do
     pipe_through :api
 
     post "/sign_in", AuthController, :create
