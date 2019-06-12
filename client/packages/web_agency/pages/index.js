@@ -1,9 +1,10 @@
+import TopNavigation from '../templates/TopNavigation'
+
 function Home() {
   return (
-    <div>
-      <br />
-      Welcome to Next.js!
-    </div>
+    <>
+      <TopNavigation />
+    </>
   )
 }
 
