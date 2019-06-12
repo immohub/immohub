@@ -11,9 +11,7 @@ services:
     volumes:
       - ./server/config:/app/config
       - ./server/entrypoints:/app/entrypoints
-      - ./server/lib:/app/lib
-      - ./server/priv:/app/priv
-      - ./server/test:/app/test
+      - ./server/apps:/app/apps
     # The build parameters for this container.
     build:
       # Here we define that it should build from the current directory
