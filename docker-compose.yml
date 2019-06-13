@@ -11,16 +11,15 @@ services:
     volumes:
       - ./server/config:/app/config
       - ./server/entrypoints:/app/entrypoints
-      - ./server/lib:/app/lib
-      - ./server/priv:/app/priv
-      - ./server/test:/app/test
+      - ./server/apps:/app/apps
     # The build parameters for this container.
     build:
       # Here we define that it should build from the current directory
       context: ./server
     ports:
       # Mapping the port to make the Phoenix app accessible outside of the container
-      - "4000:4000"
+      - "4001:4001"
+      - "4002:4002"
     depends_on:
       # The db container needs to be started before we start this container
       - db

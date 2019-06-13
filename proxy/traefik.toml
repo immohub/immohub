@@ -11,9 +11,13 @@ defaultEntryPoints = ["http"]
 
   [backends]
 
-    [backends.api]
-      [backends.api.servers.server1]
-      url = "http://phoenix:4000"
+    [backends.auth]
+      [backends.auth.servers.server1]
+      url = "http://phoenix:4001"
+
+    [backends.client_api]
+      [backends.client_api.servers.server1]
+      url = "http://phoenix:4002"
 
     [backends.immohub]
       [backends.immohub.servers.server1]
@@ -34,10 +38,15 @@ defaultEntryPoints = ["http"]
     [frontends.immohub]
     backend = "immohub"
 
-    [frontends.api]
-    backend = "api"
-      [frontends.api.routes.test_1]
+    [frontends.client_api]
+    backend = "client_api"
+      [frontends.client_api.routes.test_1]
       rule = "Path:/api"
+
+    [frontends.auth]
+    backend = "auth"
+      [frontends.auth.routes.test_1]
+      rule = "Path:/auth"
 
     [frontends.web_agency]
     backend = "web_agency"
