@@ -8,6 +8,7 @@ defmodule Database.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
+      Database.Repo
       # Starts a worker by calling: Database.Worker.start_link(arg)
       # {Database.Worker, arg}
     ]
