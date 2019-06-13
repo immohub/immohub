@@ -10,19 +10,7 @@
 use Mix.Config
 
 # Configure Mix tasks and generators
-config :server,
-  ecto_repos: [Server.Repo]
-
-config :server_web,
-  ecto_repos: [Server.Repo],
-  generators: [context_app: :server]
-
-# Configures the endpoint
-config :server_web, ServerWeb.Endpoint,
-  url: [host: "localhost"],
-  secret_key_base: "OnQMf6ZtsApKvMRtw9Tgt3wLm/MYKvQgP5H2RiPLYckECzMIx9xZnkXvYhVnJUFN",
-  render_errors: [view: ServerWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: ServerWeb.PubSub, adapter: Phoenix.PubSub.PG2]
+import_config "../apps/*/config/config.exs"
 
 # Configures Elixir's Logger
 config :logger, :console,

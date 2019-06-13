@@ -1,6 +1,6 @@
-defmodule Server.Repo do
+defmodule Database.Repo do
   use Ecto.Repo,
-    otp_app: :server,
+    otp_app: :database,
     adapter: Ecto.Adapters.Postgres
 
   # def init(_, config) do

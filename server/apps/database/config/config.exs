@@ -10,7 +10,7 @@ use Mix.Config
 
 # You can configure your application as:
 #
-config :database, key: :value
+config :database,
   ecto_repos: [Database.Repo]
 #
 # and access this configuration in your application as:
