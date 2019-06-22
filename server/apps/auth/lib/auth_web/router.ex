@@ -5,7 +5,11 @@ defmodule AuthWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", AuthWeb do
+  scope "/auth", AuthWeb do
     pipe_through :api
+
+    get "/test", AuthController, :test
+    post "/login", AuthController, :create
+    post "/logout", AuthController, :delete
   end
 end
