@@ -2,8 +2,11 @@ const THEME = {
   global: {
     font: {
       family: 'Roboto',
-      size: '14px',
+      size: '18px',
       height: '20px',
+    },
+    colors: {
+      brand: '#228BE6',
     },
   },
 }
