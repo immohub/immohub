@@ -18,3 +18,11 @@ jobs:
       - run:
           name: Build backend immohub
           command: cd server ; docker build -t dorianamouroux/immohub-backend:latest .
+
+      - run:
+          name: Push the images
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push dorianamouroux/immohub-agency:latest
+            docker push dorianamouroux/immohub:latest
+            docker push dorianamouroux/immohub-backend:latest
