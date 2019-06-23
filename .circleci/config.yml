@@ -9,12 +9,12 @@ jobs:
 
       - run:
           name: Build frontend agency
-          command: cd client/agency ; docker build -t dorianamouroux/immohub-agency:latest
+          command: cd client/agency ; docker build -t dorianamouroux/immohub-agency:latest .
 
       - run:
           name: Build frontend immohub
-          command: cd client/immohub ; docker build -t dorianamouroux/immohub:latest
+          command: cd client/immohub ; docker build -t dorianamouroux/immohub:latest .
 
       - run:
           name: Build backend immohub
-          command: cd server ; docker build -t dorianamouroux/immohub-backend:latest
+          command: cd server ; docker build -t dorianamouroux/immohub-backend:latest .
