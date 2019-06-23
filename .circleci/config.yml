@@ -10,9 +10,13 @@ jobs:
       - checkout
 
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: Build frontend agency
+          command: cd client/agency ; docker build -t dorianamouroux/immohub-agency:latest
 
       - run:
-          name: Print the Current Time
-          command: date
+          name: Build frontend immohub
+          command: cd client/immohub ; docker build -t dorianamouroux/immohub:latest
+
+      - run:
+          name: Build backend immohub
+          command: cd server ; docker build -t dorianamouroux/immohub-backend:latest
