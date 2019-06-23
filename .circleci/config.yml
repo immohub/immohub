@@ -1,14 +1,11 @@
 version: 2
 jobs:
   build:
-    docker:
-      # specify the version here
-      - image: debian:stretch
+    machine: true
 
     working_directory: ~/repo
     steps:
       - checkout
-      - setup_remote_docker
 
       - run:
           name: Build frontend agency
