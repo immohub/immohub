@@ -21,16 +21,11 @@ defaultEntryPoints = ["http"]
 
     [backends.immohub]
       [backends.immohub.servers.server1]
-      url = "http://frontend:3002"
+      url = "http://frontend-immohub:3001"
 
     [backends.web_agency]
       [backends.web_agency.servers.server1]
-      url = "http://frontend:3000"
-
-    # when PUBLIC_PATH is ready for development
-    # [backends.web_admin]
-    #   [backends.web_admin.servers.server1]
-    #   url = "http://frontend:3001"
+      url = "http://frontend-agency:3000"
 
 
   [frontends]
@@ -52,11 +47,3 @@ defaultEntryPoints = ["http"]
     backend = "web_agency"
       [frontends.web_agency.routes.test_1]
         rule = "HostRegexp:{subdomain:[a-z]+}.localhost"
-
-    # when PUBLIC_PATH is ready for development
-    # [frontends.web_admin]
-    # backend = "web_admin"
-    #   [frontends.web_admin.routes.test_1]
-    #     rule = "HostRegexp:{subdomain:[a-z]+}.localhost"
-    #   [frontends.web_admin.routes.test_2]
-    #   rule = "Path:/admin"

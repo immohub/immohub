@@ -1,7 +1,0 @@
-node_modules
-packages/*/node_modules
-packages/web_agency/.next
-packages/immohub/.cache
-packages/immohub/public
-packages/shared/dist
-packages/web_agency/.next
