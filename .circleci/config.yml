@@ -9,20 +9,20 @@ jobs:
 
       - run:
           name: Build frontend agency
-          command: cd client/agency ; docker build -t dorianamouroux/immohub-agency:latest .
+          command: cd client/agency ; docker build -t immohub/immohub-agency:latest .
 
       - run:
           name: Build frontend immohub
-          command: cd client/immohub ; docker build -t dorianamouroux/immohub:latest .
+          command: cd client/immohub ; docker build -t immohub/immohub:latest .
 
       - run:
           name: Build backend immohub
-          command: cd server ; docker build -t dorianamouroux/immohub-backend:latest .
+          command: cd server ; docker build -t immohub/immohub-backend:latest .
 
       - run:
           name: Push the images
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push dorianamouroux/immohub-agency:latest
-            docker push dorianamouroux/immohub:latest
-            docker push dorianamouroux/immohub-backend:latest
+            docker push immohub/immohub-agency:latest
+            docker push immohub/immohub:latest
+            docker push immohub/immohub-backend:latest
